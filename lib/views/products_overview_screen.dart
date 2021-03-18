@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/data/dummy_data.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/widgets/product_item.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
   final List<Product> loadedProducts = dummyProducts;
@@ -20,7 +21,9 @@ class ProductsOverviewScreen extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(10),
         itemCount: loadedProducts.length,
-        itemBuilder: (ctx, index) => Text(loadedProducts[index].title),
+        itemBuilder: (ctx, index) => ProductItem(
+          product: loadedProducts[index],
+        ),
       ),
     );
   }
