@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/data/dummy_data.dart';
-import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/providers/products.dart';
 import 'package:flutter_shop/widgets/product_item.dart';
+import 'package:provider/provider.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
-  final List<Product> loadedProducts = dummyProducts;
-
   @override
   Widget build(BuildContext context) {
+    final productsProvider = Provider.of<Products>(context);
+    final products = productsProvider.items;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('MyShop'),
@@ -20,9 +21,9 @@ class ProductsOverviewScreen extends StatelessWidget {
           mainAxisSpacing: 10,
         ),
         padding: const EdgeInsets.all(10),
-        itemCount: loadedProducts.length,
+        itemCount: products.length,
         itemBuilder: (ctx, index) => ProductItem(
-          product: loadedProducts[index],
+          product: products[index],
         ),
       ),
     );
